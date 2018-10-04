@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Genereate Best Selling",
+    "url": "http://localhost:3030/v1/manage/trend/generate_bestselling?mode=nsq",
+    "headers": ["Secret|patapon", "Content-Type|application/json"],
+    "schedule": "*/10 * * * * *"
+  }
+]
