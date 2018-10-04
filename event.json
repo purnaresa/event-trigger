@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Test Event",
+    "url": "https://api.jsonbin.io/b/5bb5c73f6d95da7b7a72f281",
+    "headers": [
+      "secret-key|$2a$10$duBDbMEt8ShCmiF6Z8STB.X556Zw6FU/V2qcmykoTHl4cvmmq.DPu"
+    ],
+    "schedule": "*/10 * * * * *"
+  }
+]

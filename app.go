@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
-	"github.com/tokopedia/feeds/src/utils"
 	"gopkg.in/robfig/cron.v2"
 )
 
@@ -21,17 +21,30 @@ type (
 	}
 )
 
-func main() {
-	file := flag.String("file", "event.json", "Events list")
-	flag.Parse()
+var (
+	logger *log.Logger
+)
 
-	log.Printf("initiating app using %s", *file)
+func main() {
+	eventFile := flag.String("event", "event.json", "Events list")
+	logFile := flag.String("log", "event.log", "log file")
+	flag.Parse()
+	f, err := os.OpenFile(*logFile,
+		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+
+	logger = log.New(f, "", log.LstdFlags)
+
+	logger.Printf("initiating app using %s", *eventFile)
 	c := cron.New()
-	events := getEvent(*file)
+	events := getEvent(*eventFile)
 
 	for _, v := range events {
 		c.AddFunc(v.Schedule, func() { trigger(v) })
-		log.Printf("run : *%s* at %s\n", v.Name, v.Schedule)
+		logger.Printf("run : *%s* at %s\n", v.Name, v.Schedule)
 	}
 
 	c.Start()
@@ -42,12 +55,12 @@ func main() {
 func getEvent(file string) (events []Event) {
 	featureFile, err := ioutil.ReadFile(file)
 	if err != nil {
-		utils.LogError.Println(err)
+		logger.Println(err)
 		return
 	}
 	err = json.Unmarshal(featureFile, &events)
 	if err != nil {
-		utils.LogError.Println(err)
+		logger.Println(err)
 		return
 	}
 
@@ -64,12 +77,12 @@ func trigger(event Event) {
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Println(err)
+		logger.Println(err)
 		return
 	}
 
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
-	log.Printf(string(body))
+	logger.Printf("event : *%s* respond : %s", event.Name, string(body))
 }
