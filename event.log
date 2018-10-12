@@ -1,0 +1,29 @@
+2018/10/12 15:10:54 initiating app using event.json
+2018/10/12 15:10:54 run : *Test Event* at */3 * * * * *
+2018/10/12 15:10:54 run : *Test Event 2* at */5 * * * * *
+2018/10/12 15:10:55 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:10:57 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:00 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:00 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:03 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:05 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:06 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:09 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:10 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:12 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:15 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:15 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:18 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:20 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:21 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:24 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:25 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:27 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:30 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:30 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:33 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:35 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:36 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:39 event : *Test Event* respond : {"data":"ok"}
+2018/10/12 15:11:40 event : *Test Event 2* respond : {"data":"ok"}
+2018/10/12 15:11:42 event : *Test Event* respond : {"data":"ok"}

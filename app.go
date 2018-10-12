@@ -39,16 +39,17 @@ func main() {
 	logger = log.New(f, "", log.LstdFlags)
 
 	logger.Printf("initiating app using %s", *eventFile)
-	c := cron.New()
 	events := getEvent(*eventFile)
+	c := cron.New()
 
-	for _, v := range events {
-		c.AddFunc(v.Schedule, func() { trigger(v) })
-		logger.Printf("run : *%s* at %s\n", v.Name, v.Schedule)
+	for _, event := range events {
+		logger.Printf("run : *%s* at %s\n", event.Name, event.Schedule)
+		go func(v Event) {
+			c.AddFunc(v.Schedule, func() { trigger(v) })
+		}(event)
 	}
 
 	c.Start()
-
 	select {}
 }
 
