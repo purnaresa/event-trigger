@@ -15,6 +15,7 @@ import (
 type (
 	Event struct {
 		Name     string   `json:"name"`
+		Method   string   `json:"method"`
 		URL      string   `json:"url"`
 		Headers  []string `json:"headers"`
 		Schedule string   `json:"schedule"`
@@ -70,7 +71,7 @@ func getEvent(file string) (events []Event) {
 
 func trigger(event Event) {
 
-	req, _ := http.NewRequest("GET", event.URL, nil)
+	req, _ := http.NewRequest(event.Method, event.URL, nil)
 	for _, v := range event.Headers {
 		texts := strings.Split(v, "|")
 		req.Header.Add(texts[0], texts[1])
