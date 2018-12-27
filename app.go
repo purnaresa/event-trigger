@@ -9,10 +9,11 @@ import (
 	"os"
 	"strings"
 
-	"gopkg.in/robfig/cron.v2"
+	cron "gopkg.in/robfig/cron.v2"
 )
 
 type (
+	// Event data structure for event
 	Event struct {
 		Name     string   `json:"name"`
 		Method   string   `json:"method"`
@@ -39,12 +40,12 @@ func main() {
 
 	logger = log.New(f, "", log.LstdFlags)
 
-	logger.Printf("initiating app using %s", *eventFile)
+	log.Printf("initiating app using %s", *eventFile)
 	events := getEvent(*eventFile)
 	c := cron.New()
 
 	for _, event := range events {
-		logger.Printf("run : *%s* at %s\n", event.Name, event.Schedule)
+		log.Printf("run : *%s* at %s\n", event.Name, event.Schedule)
 		go func(v Event) {
 			c.AddFunc(v.Schedule, func() { trigger(v) })
 		}(event)
